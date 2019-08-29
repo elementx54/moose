@@ -9,6 +9,7 @@
 #* https://www.gnu.org/licenses/lgpl-2.1.html
 
 import argparse, sys, os, csv
+import pandas
 
 parser = argparse.ArgumentParser(description="Combine series of csv outputs in separate files for each time step into a single file")
 parser.add_argument("-d", "--delimiter", type = str, help="delimiter for output file")
@@ -20,6 +21,8 @@ parser.add_argument("-l", "--last", type = int, help="take last n steps")
 parser.add_argument("-s", "--start", type = int, help="start at step")
 parser.add_argument("-e", "--end", type = int, help="end at step")
 parser.add_argument("basename", type = str, help="Basename of csv file time series")
+parser.add_argument("-t", "--timefile", action="store_true", help="time will be taken from '*time.csv' file")
+parser.add_argument("-b", "--bilinear", action="store_true", help="create piecwise bilinear file, usually requires -t and -w")
 
 args=parser.parse_args()
 basename = args.basename
@@ -59,11 +62,17 @@ else:
     if endt == None:
         endt = len(csvfile_names) - 1
 
+if args.timefile:
+    df_time = pandas.read_csv(basename+'time.csv')
 for i, file_name in enumerate(csvfile_names):
     if i >= startt and i <= endt:
         csvfiles.append(open(file_name))
         csvdictreaders.append(csv.DictReader(csvfiles[-1]))
-        times.append(str(i))
+        if args.timefile:
+            # Swap timestep for time
+            times.append(str(df_time.iloc[i,0]))
+        else:
+            times.append(str(i))
 
 if len(csvfiles) == 0:
     sys.stderr.write("No files to combine\n")
@@ -118,3 +127,11 @@ while (keep_reading):
 for csvfile in csvfiles:
     csvfiles[icsv].close()
 outfile.close()
+
+if args.bilinear:
+    df_csv = pandas.read_csv(outfilename, index_col=0)
+    df_tran = df_csv.T
+    all_col = df_tran.columns.map(str)
+    with open(outfilename, 'w') as f:
+        f.write(','.join(all_col.values.tolist()) + '\n')
+        df_tran.to_csv(f, header=False)
