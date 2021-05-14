@@ -1,0 +1,12 @@
+[Tests]
+  issues = '#17846'
+  design = 'EnthalpyConduction.md'
+  [calc]
+    type = 'CSVDiff'
+    input = 'calc.i'
+    csvdiff = 'calc_out.csv'
+    requirement = "The system shall compute the conduction-like term of the
+                   enthalpy form of the heat equation which is similar to the
+                   standard heat equation conduction term."
+  []
+[]
