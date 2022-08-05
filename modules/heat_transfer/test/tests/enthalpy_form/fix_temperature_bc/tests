@@ -1,0 +1,12 @@
+[Tests]
+  issues = '#17846'
+  design = 'EnthalpyFixTemperatureBC.md'
+  [fix_T]
+    type = 'CSVDiff'
+    input = 'fix_T.i'
+    csvdiff = 'fix_T_out.csv'
+    requirement = "The enthalpy fixed boundary condition provided with a 
+                   temperature shall produce an enthalpy Dirichlet boundary
+                   condition."
+  []
+[]

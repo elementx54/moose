@@ -54,10 +54,16 @@ Example derivations assuming constant properties for a material with a
 or a [range of temperatures](range_melt.md)
 over which melting occurs illustrate the form of $\Gamma$ and $S$.
 
-## Boundary Conditions
+## Dependent Material Properties Approximation
 
-TODO: Follow heat conduction description for BC
+Dependent material properties become difficult to correctly calculate enthalpy
+derived material properties $\Gamma$ and $S$ over large temperature or enthalpy
+changes. An approximation of using a moving reference enthalpy associated with
+a reference temperature decreased the range over which to calculate the dependent
+material properties. Over this smaller temperature range, an average material property
+is calculated when evaluating material properties at the reference temperature
+and current solution temperature. This average material property is then assumed
+constant during the calculation of $\Gamma$ and $S$.
+The reference temperature and enthalpy are updated each time step.
 
-## Material Forms
-
-TODO: Describe the single and range material forms.
+#TODO: Reference to a full example input file.
