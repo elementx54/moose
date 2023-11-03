@@ -9,8 +9,8 @@
 
 #include "EnthalpyFixTemperatureBC.h"
 
-registerMooseObject("HeatConductionApp", EnthalpyFixTemperatureBC);
-registerMooseObject("HeatConductionApp", ADEnthalpyFixTemperatureBC);
+registerMooseObject("HeatTransferApp", EnthalpyFixTemperatureBC);
+registerMooseObject("HeatTransferApp", ADEnthalpyFixTemperatureBC);
 
 template <bool is_ad>
 InputParameters

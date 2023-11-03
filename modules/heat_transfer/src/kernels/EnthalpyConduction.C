@@ -9,8 +9,8 @@
 
 #include "EnthalpyConduction.h"
 
-registerMooseObject("HeatConductionApp", EnthalpyConduction);
-registerMooseObject("HeatConductionApp", ADEnthalpyConduction);
+registerMooseObject("HeatTransferApp", EnthalpyConduction);
+registerMooseObject("HeatTransferApp", ADEnthalpyConduction);
 
 template <bool is_ad>
 InputParameters

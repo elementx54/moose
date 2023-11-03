@@ -9,8 +9,8 @@
 
 #include "EnthalpyTimeDerivative.h"
 
-registerMooseObject("HeatConductionApp", EnthalpyTimeDerivative);
-registerMooseObject("HeatConductionApp", ADEnthalpyTimeDerivative);
+registerMooseObject("HeatTransferApp", EnthalpyTimeDerivative);
+registerMooseObject("HeatTransferApp", ADEnthalpyTimeDerivative);
 
 template <bool is_ad>
 InputParameters
