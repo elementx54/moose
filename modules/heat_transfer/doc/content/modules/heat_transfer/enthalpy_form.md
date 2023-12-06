@@ -1,6 +1,6 @@
 # Enthalpy Form of Heat Conduction
 
-The change-in-enthalpy form or the heat conduction is mainly used for cases where
+The change-in-enthalpy form of the heat conduction is mainly used for cases where
 phase change occurs (melting or solidification) and material does *not* move.
 This mainly occurs in applications for internal or zero-gravity phase change.
 
