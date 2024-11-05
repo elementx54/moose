@@ -1,0 +1,19 @@
+[Tests]
+  issues = '#17846'
+  [single_melt]
+    design = 'modules/heat_transfer/enthalpy_process/single_melt.md'
+    requirement = 'The system shall match temperature solutions while using
+                   enthalpy governing equations with simple properties having
+                   a single melting temperature.'
+    input = single_melt.i
+    csvdiff = 
+  []
+  [range_melt]
+    design = 'modules/heat_transfer/enthalpy_process/range_melt.md'
+    requirement = 'The system shall match temperature solutions while using
+                   enthalpy governing equations with simple properties having
+                   a range of melting temperatures.'
+    input = range_melt.i
+    csvdiff = 
+  []
+[]
